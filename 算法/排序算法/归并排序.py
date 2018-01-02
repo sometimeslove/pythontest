@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import math
+import random
 def mergesort(list,beginindex,middleindex,endindex):
     list1=list[beginindex:middleindex+1]
     list2=list[middleindex+1:endindex+1]
     j,k=0,0
-    lenA,lenB=len(list1),len(list2)
+    lenA,lenB=middleindex-beginindex+1,endindex-middleindex
     for i in range(beginindex,endindex+1):
         if(j>=lenA):
             for m in range(i,endindex+1):
@@ -23,13 +24,18 @@ def mergesort(list,beginindex,middleindex,endindex):
         else:
             list[i] = list1[j]
             j +=1
+        print(list[i])
 def merge(list,p,q):
-    r=math.floor((p+q)/2)
     if(p<q):
+        r=math.floor((p+q)/2)
         merge(list,p,r)
         merge(list,r+1,q)
         mergesort(list,p,r,q)
-list=[12,78,34,13,36,52,46]
-print(list)
-merge(list,0,len(list)-1)
-print(list)
+if __name__ == '__main__':
+    list = []
+    for i in range(30):
+        list.append(random.randint(1, 100))
+    print(list)
+    merge(list,0,len(list)-1)
+    print(list)
+
