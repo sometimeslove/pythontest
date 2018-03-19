@@ -18,9 +18,33 @@ def GetValue(s,i,j):
         return s[i]
     else:
         return reduce(lambda x,y:x*10+y,s[i:j+1])
+def upToDown(arr,x,y, k):
+     # # 值
+     # value = [0 for i in range(0,len(arr))]
+     # # 标志位
+     # flag = [0 for i in range(0,len(arr))]
+     if k==0:
+         return GetArrValue(arr,x,y)
+     maxvalue = 0
+     for m in range(x,y-k+1):
+         tmp = GetArrValue(arr,x,m)*upToDown(arr,m+1,y,k-1)
+         if tmp>maxvalue:
+             maxvalue = tmp
+     return maxvalue
+
+def GetArrValue(arr,x,y):
+    if x>y :
+        return 0
+    tmp=0
+    for i in range(x,y+1):
+        tmp = tmp*10 + arr[i]
+    return tmp
 if __name__=='__main__':
     try:
-        test =CountSum(7)
-        print(test)
+        p = [3,2,0,5,2]
+        # test =CountSum(7)
+        # print(test)
+        print(upToDown(p,0,len(p)-1,2))
     except:
         pass
+
