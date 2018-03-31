@@ -15,7 +15,7 @@ def queens(num, state=()):
             #产生当前皇后的位置信息
             if len(state) == num-1:
                 yield (pos, )
-            #否则，把当前皇后的位置信息，添加到状态列表里，并传递给下一皇后。
+            #否则，把当前皇后的位置信息，添加到状态列表里 ，并传递给下一皇后。
             else:
                 for result in queens(num, state+(pos,)):
                     yield (pos, ) + result
