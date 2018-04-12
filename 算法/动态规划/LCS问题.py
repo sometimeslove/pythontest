@@ -12,8 +12,26 @@ def solution(x,y):
                 m[i][j]= max (m[i-1][j],m[i][j-1])
     return m
 
+def solution1 (a,b):
+    d=[[0 for i in range(len(b)+1)] for j in range(len(a)+1)]
+    for i in range(len(a)):
+        for j in range(len(b)):
+            if a[i] == b[j]:
+                d[i+1][j+1]= d[i][j]+1
+            else:
+                d[i+1][j+1] = max(d[i][j+1],d[i+1][j])
+    return getelement(d,b)
+
+def getelement(d,b):
+    flag = d[-1][-1]
+    r=[]
+    for i in range(len(d)):
+        if d[i][-1] == flag:
+            r.append([b[j] for j in range(len(d[i])-1) if d[i][j]!=d[i][j+1]])
+    return r
+
 if __name__ == '__main__':
-    x,y =['','a','b','c'],['','b','a','d','c']
+    x,y =['','a','b','c','d'],['','b','a','d','c']
     # lenx = input('请输入第一个序列的个数：\n')
     # for i in range(int(lenx)):
     #     x.append(input('第%d个：'%(i+1,)))
@@ -23,3 +41,5 @@ if __name__ == '__main__':
 
     m = solution(x,y)
     print(m)
+    n = solution1(x,y)
+    print(n)
