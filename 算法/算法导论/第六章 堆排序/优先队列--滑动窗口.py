@@ -96,3 +96,6 @@ if __name__ == '__main__':
     winsize = int(input('请输入窗口大小：'))
     s = Solution(arr,winsize)
     s._printMaxAndMinValue()
+    a = "123"
+    print(a.replace('1','4'))
+    print(a)
